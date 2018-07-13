@@ -1,0 +1,78 @@
+  # this is general info about the API
+  api:
+    info:
+      version: '1.0.0'
+      title: エンタメコインサービス
+      description: エンタメコインサービスの提供するAPIは、エンタメコインを扱うアプリケーションに有用なインターフェースを提供します。
+      termsOfService: https://motionpicture.jp/
+      contact:
+        name: Tetsu Yamazaki
+        url: https://github.com/ilovegadd
+        email: yamazaki@motionpicture.jp
+      license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+      tags:
+      - name: エンタメコインサービス
+        description: エンタメコインサービス
+      - name: ポイントサービス
+        description: ポイントサービス
+      - name: 決済方法サービス
+        description: 決済方法サービス
+
+    # securityDefinitions:
+    #   adminAuth:
+    #     type: oauth2
+    #     flow: application
+    #     tokenUrl: https://xxx.auth.ap-northeast-1.amazoncognito.com/oauth2/token
+    # security:
+    #   - adminAuth: []
+
+  # Now we describe all the models that we use
+  models:
+    -
+      name: HelloResponse
+      description: ハローレスポンス
+      contentType: application/json
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+          input: {}
+    -
+      name: AnyResponse
+      description: any
+      contentType: application/json
+      schema: {}
+    -
+      name: ErrorDetail
+      description: 詳細エラー
+      contentType: application/json
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          reason:
+            type: string
+          message:
+            type: string
+    -
+      name: ErrorResponse
+      description: エラーレスポンス
+      contentType: application/json
+      schema:
+        type: object
+        properties:
+          error:
+            type: object
+            properties:
+              message:
+                type: string
+              code:
+                type: integer
+              errors:
+                type: array
+                items:
+                  $ref: "{{model: ErrorDetail}}"
